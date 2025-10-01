@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom LED Banner</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #banner {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      box-sizing: border-box;
+      border: 2px solid #fff;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    #scrollText {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll linear infinite;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    .controls label {
+      margin-right: 10px;
+    }
+
+    .controls input, .controls select {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎇 LED Banner Simulator</h1>
+
+  <div id="banner">
+    <div id="scrollText">Welcome to the LED Banner!</div>
+  </div>
+
+  <div class="controls">
+    <label>Message: <input type="text" id="message" value="Welcome to the LED Banner!"></label><br>
+    <label>Color: <input type="color" id="color" value="#00ff00"></label><br>
+    <label>Speed (seconds): <input type="number" id="speed" value="10" min="1"></label><br>
+    <label>Font: 
+      <select id="font">
+        <option value="Arial">Arial</option>
+        <option value="Courier New">Courier New</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Monospace">Monospace</option>
+      </select>
+    </label><br>
+    <button onclick="updateBanner()">Update Banner</button>
+  </div>
+
+  <script>
+    function updateBanner() {
+      const text = document.getElementById('message').value;
+      const color = document.getElementById('color').value;
+      const speed = document.getElementById('speed').value;
+      const font = document.getElementById('font').value;
+
+      const scrollText = document.getElementById('scrollText');
+      scrollText.textContent = text;
+      scrollText.style.color = color;
+      scrollText.style.fontFamily = font;
+      scrollText.style.animationDuration = speed + 's';
+    }
+  </script>
+
+</body>
+</html>
